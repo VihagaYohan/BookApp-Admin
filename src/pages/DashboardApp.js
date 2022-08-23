@@ -1,4 +1,3 @@
-import { faker } from '@faker-js/faker';
 // @mui
 import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
@@ -7,12 +6,8 @@ import Page from '../components/Page';
 import Iconify from '../components/Iconify';
 // sections
 import {
-  AppTasks,
-  AppNewsUpdate,
-  AppOrderTimeline,
-  AppCurrentVisits,
+  BookCategories,
   AppWebsiteVisits,
-  AppTrafficBySite,
   AppWidgetSummary,
   AppCurrentSubject,
   AppConversionRates,
@@ -32,19 +27,29 @@ export default function DashboardApp() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Weekly Sales" total={714000} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary title="Total Book Count" total={714000} icon={'ph:books'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="New Users" total={1352831} color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary
+              title="Total Sales Count"
+              total={1352831}
+              color="info"
+              icon={'ic:baseline-point-of-sale'}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Item Orders" total={1723315} color="warning" icon={'ant-design:windows-filled'} />
+            <AppWidgetSummary title="Total Delivery Count" total={1723315} color="warning" icon={'carbon:delivery'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
+            <AppWidgetSummary
+              title="Pending Request"
+              total={1723315}
+              color="info"
+              icon={'ic:baseline-pending-actions'}
+            />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
@@ -88,13 +93,13 @@ export default function DashboardApp() {
           </Grid>
 
           <Grid item xs={12} md={6} lg={4}>
-            <AppCurrentVisits
-              title="Current Visits"
+            <BookCategories
+              title="Book Categories"
               chartData={[
-                { label: 'America', value: 4344 },
-                { label: 'Asia', value: 5435 },
-                { label: 'Europe', value: 1443 },
-                { label: 'Africa', value: 4443 },
+                { label: 'Action and Adventure.', value: 4344 },
+                { label: 'Classics.', value: 5435 },
+                { label: 'Comic Book or Graphic Novel.', value: 1443 },
+                { label: 'Detective and Mystery', value: 4443 },
               ]}
               chartColors={[
                 theme.palette.primary.main,
@@ -137,7 +142,7 @@ export default function DashboardApp() {
             />
           </Grid>
 
-          <Grid item xs={12} md={6} lg={8}>
+          {/* <Grid item xs={12} md={6} lg={8}>
             <AppNewsUpdate
               title="News Update"
               list={[...Array(5)].map((_, index) => ({
@@ -148,9 +153,9 @@ export default function DashboardApp() {
                 postedAt: faker.date.recent(),
               }))}
             />
-          </Grid>
+          </Grid> */}
 
-          <Grid item xs={12} md={6} lg={4}>
+          {/* <Grid item xs={12} md={6} lg={4}>
             <AppOrderTimeline
               title="Order Timeline"
               list={[...Array(5)].map((_, index) => ({
@@ -166,48 +171,7 @@ export default function DashboardApp() {
                 time: faker.date.past(),
               }))}
             />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={4}>
-            <AppTrafficBySite
-              title="Traffic by Site"
-              list={[
-                {
-                  name: 'FaceBook',
-                  value: 323234,
-                  icon: <Iconify icon={'eva:facebook-fill'} color="#1877F2" width={32} height={32} />,
-                },
-                {
-                  name: 'Google',
-                  value: 341212,
-                  icon: <Iconify icon={'eva:google-fill'} color="#DF3E30" width={32} height={32} />,
-                },
-                {
-                  name: 'Linkedin',
-                  value: 411213,
-                  icon: <Iconify icon={'eva:linkedin-fill'} color="#006097" width={32} height={32} />,
-                },
-                {
-                  name: 'Twitter',
-                  value: 443232,
-                  icon: <Iconify icon={'eva:twitter-fill'} color="#1C9CEA" width={32} height={32} />,
-                },
-              ]}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6} lg={8}>
-            <AppTasks
-              title="Tasks"
-              list={[
-                { id: '1', label: 'Create FireStone Logo' },
-                { id: '2', label: 'Add SCSS and JS files if required' },
-                { id: '3', label: 'Stakeholder Meeting' },
-                { id: '4', label: 'Scoping & Estimations' },
-                { id: '5', label: 'Sprint Showcase' },
-              ]}
-            />
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
     </Page>
