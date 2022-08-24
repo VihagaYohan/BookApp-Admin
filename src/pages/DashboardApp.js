@@ -3,7 +3,6 @@ import { useTheme } from '@mui/material/styles';
 import { Grid, Container, Typography } from '@mui/material';
 // components
 import Page from '../components/Page';
-import Iconify from '../components/Iconify';
 // sections
 import {
   BookCategories,

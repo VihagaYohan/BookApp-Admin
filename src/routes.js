@@ -12,6 +12,7 @@ import Register from './pages/Register';
 import DashboardApp from './pages/DashboardApp';
 import DeliveryPending from './pages/DeliveryPending/DeliveryPending';
 import Orders from './pages/Orders/Orders';
+import ViewBook from './pages/Books/ViewBook';
 
 // ----------------------------------------------------------------------
 
@@ -24,9 +25,11 @@ export default function Router() {
         { path: 'app', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'books', element: <Books /> },
+        { path: 'viewBook/:id', element: <ViewBook /> },
         { path: 'orders', element: <Orders /> },
         { path: 'pending-request', element: <DeliveryPending /> },
         { path: 'blog', element: <Books /> },
+        {},
       ],
     },
     {

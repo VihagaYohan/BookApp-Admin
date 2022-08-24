@@ -4,7 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { Container, Button, Stack, Typography } from '@mui/material';
 // components
 import Page from '../../components/Page';
-import { ProductSort, ProductList, ProductCartWidget, ProductFilterSidebar } from '../../sections/@dashboard/products';
+import { ProductSort, ProductList, ProductFilterSidebar } from '../../sections/@dashboard/products';
 import Iconify from '../../components/Iconify';
 // mock
 import PRODUCTS from '../../_mock/products';

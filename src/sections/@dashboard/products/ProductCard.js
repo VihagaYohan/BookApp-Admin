@@ -1,8 +1,12 @@
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
+
+// constant
+import { VIEWBOOK } from '../../../constants/Route';
+
 // utils
 import { fCurrency } from '../../../utils/formatNumber';
 // components
@@ -27,9 +31,14 @@ ShopProductCard.propTypes = {
 
 export default function ShopProductCard({ product }) {
   const { name, cover, price, colors, status, priceSale } = product;
+  const navigate = useNavigate();
+
+  const showBook = () => {
+    navigate(VIEWBOOK + product?.id);
+  };
 
   return (
-    <Card>
+    <Card style={{ cursor: 'pointer' }} onClick={() => showBook()}>
       <Box sx={{ pt: '100%', position: 'relative' }}>
         {status && (
           <Label

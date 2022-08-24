@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DeliveryPending = () => {
-  return <div>DeliveryPending </div>;
+  return <> DeliveryPending</>;
 };
 
 export default DeliveryPending;
