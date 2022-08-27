@@ -1,14 +1,14 @@
+import { useState } from 'react';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
 import {
+  Button,
+  Stack,
   Card,
   Table,
-  Stack,
   Avatar,
-  Button,
   Checkbox,
   TableRow,
   TableBody,
@@ -19,14 +19,17 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
-import Page from '../components/Page';
-import Label from '../components/Label';
-import Scrollbar from '../components/Scrollbar';
-import Iconify from '../components/Iconify';
-import SearchNotFound from '../components/SearchNotFound';
-import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
+import Scrollbar from '../../components/Scrollbar';
+import Label from '../../components/Label';
+import Page from '../../components/Page';
+import SearchNotFound from '../../components/SearchNotFound';
+import { ProductSort, ProductList, ProductFilterSidebar } from '../../sections/@dashboard/products';
+import Iconify from '../../components/Iconify';
 // mock
-import USERLIST from '../_mock/user';
+import USERLIST from '../../_mock/user';
+import { BookListHead, BookListToolbar, BookMoreMenu } from '../../sections/@dashboard/books';
+import PRODUCTS from '../../_mock/products';
+import { CREATE_BOOK } from '../../constants/Route';
 
 // ----------------------------------------------------------------------
 
@@ -70,7 +73,8 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-export default function User() {
+export default function Books() {
+  const navigate = useNavigate();
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -83,6 +87,15 @@ export default function User() {
 
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  const [openFilter, setOpenFilter] = useState(false);
+
+  const handleOpenFilter = () => {
+    setOpenFilter(true);
+  };
+
+  const handleCloseFilter = () => {
+    setOpenFilter(false);
+  };
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -133,24 +146,29 @@ export default function User() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="User">
+    <Page title="Books">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-          <Typography variant="h4" gutterBottom>
-            User
+          <Typography variant="h4" sx={{ mb: 5 }}>
+            Books
           </Typography>
-          <Button variant="contained" component={RouterLink} to="#" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
+          <Button
+            variant="contained"
+            component={RouterLink}
+            to={CREATE_BOOK}
+            startIcon={<Iconify icon="eva:plus-fill" />}
+          >
+            New Book
           </Button>
         </Stack>
 
         <Card>
-          <UserListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
+          <BookListToolbar numSelected={selected.length} filterName={filterName} onFilterName={handleFilterByName} />
 
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
-                <UserListHead
+                <BookListHead
                   order={order}
                   orderBy={orderBy}
                   headLabel={TABLE_HEAD}
@@ -194,7 +212,7 @@ export default function User() {
                         </TableCell>
 
                         <TableCell align="right">
-                          <UserMoreMenu />
+                          <BookMoreMenu />
                         </TableCell>
                       </TableRow>
                     );

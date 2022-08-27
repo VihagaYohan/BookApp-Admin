@@ -3,13 +3,17 @@ import { Navigate, useRoutes } from 'react-router-dom';
 import DashboardLayout from './layouts/dashboard';
 import LogoOnlyLayout from './layouts/LogoOnlyLayout';
 //
-import Blog from './pages/Blog';
-import User from './pages/User';
+import Books from './pages/Books/Books';
+import User from './pages/Users/User';
 import Login from './pages/Login';
 import NotFound from './pages/Page404';
 import Register from './pages/Register';
-import Products from './pages/Products';
+
 import DashboardApp from './pages/DashboardApp';
+import DeliveryPending from './pages/DeliveryPending/DeliveryPending';
+import Orders from './pages/Orders/Orders';
+import ViewBook from './pages/Books/ViewBook';
+import CreateBook from './pages/Books/CreateBook';
 
 // ----------------------------------------------------------------------
 
@@ -21,8 +25,13 @@ export default function Router() {
       children: [
         { path: 'app', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
-        { path: 'products', element: <Products /> },
-        { path: 'blog', element: <Blog /> },
+        { path: 'books', element: <Books /> },
+        { path: 'create-book', element: <CreateBook /> },
+        { path: 'view-book/:id', element: <ViewBook /> },
+        { path: 'orders', element: <Orders /> },
+        { path: 'pending-request', element: <DeliveryPending /> },
+        { path: 'blog', element: <Books /> },
+        {},
       ],
     },
     {
@@ -37,7 +46,7 @@ export default function Router() {
       path: '/',
       element: <LogoOnlyLayout />,
       children: [
-        { path: '/', element: <Navigate to="/dashboard/app" /> },
+        { path: '/', element: <Login /> },
         { path: '404', element: <NotFound /> },
         { path: '*', element: <Navigate to="/404" /> },
       ],

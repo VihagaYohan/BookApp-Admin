@@ -17,29 +17,19 @@ const navConfig = [
     icon: getIcon('eva:people-fill'),
   },
   {
-    title: 'product',
-    path: '/dashboard/products',
-    icon: getIcon('eva:shopping-bag-fill'),
+    title: 'books',
+    path: '/dashboard/books',
+    icon: getIcon('ant-design:read-outlined'),
   },
   {
-    title: 'blog',
-    path: '/dashboard/blog',
-    icon: getIcon('eva:file-text-fill'),
+    title: 'orders',
+    path: '/dashboard/orders',
+    icon: getIcon('icon-park-outline:order'),
   },
   {
-    title: 'login',
-    path: '/login',
-    icon: getIcon('eva:lock-fill'),
-  },
-  {
-    title: 'register',
-    path: '/register',
-    icon: getIcon('eva:person-add-fill'),
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: getIcon('eva:alert-triangle-fill'),
+    title: 'pending request',
+    path: '/dashboard/pending-request',
+    icon: getIcon('ic:baseline-pending-actions'),
   },
 ];
 
