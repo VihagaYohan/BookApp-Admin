@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
 import { Container, Button, Stack, Typography } from '@mui/material';
 // components
@@ -8,10 +8,12 @@ import { ProductSort, ProductList, ProductFilterSidebar } from '../../sections/@
 import Iconify from '../../components/Iconify';
 // mock
 import PRODUCTS from '../../_mock/products';
+import { CREATE_BOOK } from '../../constants/Route';
 
 // ----------------------------------------------------------------------
 
 export default function Books() {
+  const navigate = useNavigate();
   const [openFilter, setOpenFilter] = useState(false);
 
   const handleOpenFilter = () => {
@@ -23,13 +25,18 @@ export default function Books() {
   };
 
   return (
-    <Page title="Dashboard: Products">
+    <Page title="Books">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" sx={{ mb: 5 }}>
             Books
           </Typography>
-          <Button variant="contained" component={RouterLink} to="#" startIcon={<Iconify icon="eva:plus-fill" />}>
+          <Button
+            variant="contained"
+            component={RouterLink}
+            to={CREATE_BOOK}
+            startIcon={<Iconify icon="eva:plus-fill" />}
+          >
             New Book
           </Button>
         </Stack>
