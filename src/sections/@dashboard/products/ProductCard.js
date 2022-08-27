@@ -5,7 +5,7 @@ import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 // constant
-import { VIEWBOOK } from '../../../constants/Route';
+import { VIEW_BOOK } from '../../../constants/Route';
 
 // utils
 import { fCurrency } from '../../../utils/formatNumber';
@@ -34,7 +34,7 @@ export default function ShopProductCard({ product }) {
   const navigate = useNavigate();
 
   const showBook = () => {
-    navigate(VIEWBOOK + product?.id);
+    navigate(VIEW_BOOK + product?.id);
   };
 
   return (
