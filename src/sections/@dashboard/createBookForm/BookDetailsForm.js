@@ -2,15 +2,13 @@ import React, { useContext } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import { FormControl } from '@mui/material';
+import Rating from '@mui/material/Rating';
 
 import { CreateBookContext } from '../../../contexts/CreateBookContext';
 
 export default function BookDetailsForm() {
-  const { setBookName } = useContext(CreateBookContext);
-  const { bookName } = useContext(CreateBookContext);
+  const { setBookName, setRating, setCategories, setLanguage, setAuthor } = useContext(CreateBookContext);
+  const { bookName, rating, categories, language, author } = useContext(CreateBookContext);
   return (
     <>
       <Typography variant="h6" gutterBottom>
@@ -37,6 +35,8 @@ export default function BookDetailsForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            value={categories}
+            onChange={(e) => setCategories(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -48,6 +48,8 @@ export default function BookDetailsForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -59,6 +61,18 @@ export default function BookDetailsForm() {
             fullWidth
             autoComplete="family-name"
             variant="standard"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Typography component="legend">Rating</Typography>
+          <Rating
+            name="simple-controlled"
+            value={rating}
+            onChange={(event, newValue) => {
+              setRating(newValue);
+            }}
           />
         </Grid>
       </Grid>

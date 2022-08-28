@@ -1,32 +1,28 @@
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Toolbar from '@mui/material/Toolbar';
-import Paper from '@mui/material/Paper';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import BookDetailsForm from './BookDetailsForm';
+import OtherBookDetailsForm from './OtherBookDetailsForm';
+import ReviewBookDetails from './ReviewBookDetails';
+import LinearBuffer from '../../../components/LinearBuffer';
 
 const steps = ['Book details', 'Other details', 'Review book details'];
 
-export default function CreateBookForm({ bookName, setBookName }) {
+export default function CreateBookForm() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   function getStepContent(step) {
     switch (step) {
       case 0:
-        return <BookDetailsForm bookName={bookName} setBookNames={setBookName} />;
+        return <BookDetailsForm />;
       case 1:
-        return <h1>two</h1>;
+        return <OtherBookDetailsForm />;
       case 2:
-        return <h1>threee</h1>;
+        return <ReviewBookDetails />;
       default:
         throw new Error('Unknown step');
     }
@@ -56,11 +52,7 @@ export default function CreateBookForm({ bookName, setBookName }) {
         {activeStep === steps.length ? (
           <>
             <Typography variant="h5" gutterBottom>
-              Thank you for your order.
-            </Typography>
-            <Typography variant="subtitle1">
-              Your order number is #2001539. We have emailed your order confirmation, and will send you an update when
-              your order has shipped.
+              Book is Created !
             </Typography>
           </>
         ) : (

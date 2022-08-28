@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+
 // material
 import {
   Button,
@@ -17,19 +17,35 @@ import {
   Typography,
   TableContainer,
   TablePagination,
+  Backdrop,
+  Box,
+  Modal,
+  Fade,
 } from '@mui/material';
 // components
 import Scrollbar from '../../components/Scrollbar';
 import Label from '../../components/Label';
 import Page from '../../components/Page';
 import SearchNotFound from '../../components/SearchNotFound';
-import { ProductSort, ProductList, ProductFilterSidebar } from '../../sections/@dashboard/products';
 import Iconify from '../../components/Iconify';
 // mock
 import USERLIST from '../../_mock/user';
 import { BookListHead, BookListToolbar, BookMoreMenu } from '../../sections/@dashboard/books';
-import PRODUCTS from '../../_mock/products';
-import { CREATE_BOOK } from '../../constants/Route';
+import CreateBook from './CreateBook';
+
+// ---------------------------------------------------------------------
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '60%',
+  bgcolor: 'background.paper',
+  borderRadius: '4px ',
+  boxShadow: 24,
+  p: 4,
+};
 
 // ----------------------------------------------------------------------
 
@@ -74,7 +90,6 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function Books() {
-  const navigate = useNavigate();
   const [page, setPage] = useState(0);
 
   const [order, setOrder] = useState('asc');
@@ -88,6 +103,12 @@ export default function Books() {
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const [openFilter, setOpenFilter] = useState(false);
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+
+  const handleClose = () => setOpen(false);
 
   const handleOpenFilter = () => {
     setOpenFilter(true);
@@ -148,16 +169,31 @@ export default function Books() {
   return (
     <Page title="Books">
       <Container>
+        {/* create a book */}
+
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          BackdropComponent={Backdrop}
+          BackdropProps={{
+            timeout: 500,
+          }}
+        >
+          <Fade in={open}>
+            <Box sx={style}>
+              <CreateBook />
+            </Box>
+          </Fade>
+        </Modal>
+
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             Books
           </Typography>
-          <Button
-            variant="contained"
-            component={RouterLink}
-            to={CREATE_BOOK}
-            startIcon={<Iconify icon="eva:plus-fill" />}
-          >
+          <Button variant="contained" onClick={handleOpen} startIcon={<Iconify icon="eva:plus-fill" />}>
             New Book
           </Button>
         </Stack>
